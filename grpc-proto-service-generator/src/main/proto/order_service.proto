@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package com.kran.service.order;
+
+option java_multiple_files = true;
+
+service OrderService {
+	rpc GetOrderDetailsByItem (OrderDetailsRequest) returns (OrderDetailsResponse){}
+}
+
+message Items {
+	int32 item_id = 1;
+	string item_code = 2;
+	string item_name = 3;
+	double unit_price = 4;
+	string measurement_unit = 5;
+	int32 available_quantity = 6;
+}
+
+message Order {
+	int32 order_id = 1;
+	string order_number = 2;
+	repeated Items items = 3;
+	double totoal_order_value = 4;
+}
+
+message OrderDetailsRequest {
+	int32 item_id = 1;
+}
+
+message OrderDetailsResponse {
+	repeated Order orders = 1;
+}

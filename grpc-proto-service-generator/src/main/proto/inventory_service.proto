@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.kran.service.inventory;
+
+option java_multiple_files = true;
+
+service InventoryService {
+	rpc GetItemDetails (InventoryDetailsRequest) returns (InventoryDetailsResponse){}
+}
+
+message Items {
+	int32 item_id = 1;
+	string item_code = 2;
+	string item_name = 3;
+	double unit_price = 4;
+	string measurement_unit = 5;
+	int32 available_quantity = 6;
+}
+
+message InventoryDetailsRequest {
+	repeated int32 item_ids = 1;
+}
+
+message InventoryDetailsResponse {
+	repeated Items items = 1; 
+}
+
